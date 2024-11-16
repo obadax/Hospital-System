@@ -2,26 +2,27 @@ import fs from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import { fileURLToPath } from 'url';
+import { promises as promise1 } from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const dataFile = path.join(__dirname, '../data/patients.json');
+const dataFilePath = path.join(__dirname, '../data/patients.json');
 
 // Utility: Read Patients
-const readPatients = () => {
+const readPatients = async () => {
   try {
-    const data = fs.readFileSync(dataFile, 'utf8');
+    const data = await promise1.readFile(dataFilePath, 'utf8');
     return data ? JSON.parse(data) : [];
   } catch (err) {
-    console.error("Error reading patients.json:", err);
+    console.error("Error in Reading Patients.JSON", err);
     return [];
   }
 };
 
 // Utility: Write Patients
-const writePatients = (patients) => {
+const writePatients = async (patients) => {
   try {
-    fs.writeFileSync(dataFile, JSON.stringify(patients, null, 2), 'utf8');
+    await promise1.writeFile(dataFilePath, JSON.stringify(patients, null, 2), 'utf8');
   } catch (err) {
     console.error("Error writing to patients.json:", err);
   }
@@ -37,8 +38,8 @@ const validatePatientData = (patient) => {
 };
 
 // Add Patient
-const addPatient = (req, res) => {
-  const patients = readPatients();
+const addPatient = async (req, res) => {
+  const patients = await readPatients();
   const newPatient = { id: uuidv4(), ...req.body };
 
   const errors = validatePatientData(newPatient);
@@ -47,20 +48,20 @@ const addPatient = (req, res) => {
   }
 
   patients.push(newPatient);
-  writePatients(patients);
+  await writePatients(patients);
   res.render('addPatient', { message: 'Patient added successfully!' });
 };
 
 // Get All Patients
-const getAllPatients = (req, res) => {
-  const patients = readPatients();
+const getAllPatients = async (req, res) => {
+  const patients = await readPatients();
   res.render('patients', { patients });
 };
 
 // Search Patients
-const searchPatients = (req, res) => {
+const searchPatients = async (req, res) => {
   const searchCriteria = req.query;
-  const patients = readPatients();
+  const patients = await readPatients();
   const filteredPatients = patients.filter(patient => {
     return Object.keys(searchCriteria).every(key => patient[key] === searchCriteria[key]);
   });
@@ -69,9 +70,7 @@ const searchPatients = (req, res) => {
 
 // Render Add Patient Form
 const renderAddPatientForm = (req, res) => {
-    res.render('addPatient', { message: null, errors: null });
-  };
-  
-export { addPatient, getAllPatients, searchPatients, renderAddPatientForm };
-  
+  res.render('addPatient', { message: null, errors: null });
+};
 
+export { addPatient, getAllPatients, searchPatients, renderAddPatientForm };
