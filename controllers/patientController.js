@@ -1,8 +1,7 @@
-import fs from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import { fileURLToPath } from 'url';
-import { promises as promise1 } from 'fs';
+import { promises as fs } from 'fs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,7 +10,7 @@ const dataFilePath = path.join(__dirname, '../data/patients.json');
 // Utility: Read Patients
 const readPatients = async () => {
   try {
-    const data = await promise1.readFile(dataFilePath, 'utf8');
+    const data = await fs.readFile(dataFilePath, 'utf8');
     return data ? JSON.parse(data) : [];
   } catch (err) {
     console.error("Error in Reading Patients.JSON", err);
@@ -22,7 +21,7 @@ const readPatients = async () => {
 // Utility: Write Patients
 const writePatients = async (patients) => {
   try {
-    await promise1.writeFile(dataFilePath, JSON.stringify(patients, null, 2), 'utf8');
+    await fs.writeFile(dataFilePath, JSON.stringify(patients, null, 2), 'utf8');
   } catch (err) {
     console.error("Error writing to patients.json:", err);
   }
@@ -37,7 +36,7 @@ const validatePatientData = (patient) => {
   return errors;
 };
 
-// Add Patient
+// Add Patient 
 const addPatient = async (req, res) => {
   const patients = await readPatients();
   const newPatient = { id: uuidv4(), ...req.body };
@@ -73,4 +72,11 @@ const renderAddPatientForm = (req, res) => {
   res.render('addPatient', { message: null, errors: null });
 };
 
+//delete patient.
+
+
+//edit patient.
+const editPatient = (req, res)=>{
+  
+}
 export { addPatient, getAllPatients, searchPatients, renderAddPatientForm };
