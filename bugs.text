@@ -1,21 +1,22 @@
 ADD PATIENT
-> Adding num as name
-> That made a bug in searching too
-> Adding validation that the user is already in the system.
-> Letters cascading to validation.
-> in entering a number in addPatient, there is no format for the number adding u could add all 0's.
+> Adding num as name ✔️
+> That made a bug in searching too✔️
+> Adding validation that the user is already in the system.✔️
+> Letters cascading to validation.✔️
+> Adding space to the end will change result.✔️
+> in entering a number in addPatient, there is no format for the number adding u could add all 0's.✔️
 
 
 SEARCH
-> search, no validation for entering a number(string num) in searching.
-> search cascading checking.-> so wont mess the search a different capital-small letter.
-
+> search, no validation for entering a number in searching.✔️
+> search cascading checking.-> so wont mess the search a different capital-small letter.✔️
+>cant search with num only, will give no value, and case sensitive . ✔️
 
 ADDRESS
-> Address, you can add all numbers to the address.
+> Address, you can add all numbers to the address. (remain the same)
 
 
 BIG PICTURE.
-> No edit patient Yet.
-> No deleting patient.
+> No edit patient Yet.✔️
+> No deleting patient.✔️
 > ID logic change ->using name and phone will fetch the uuid then everything later in system would be using uuid.

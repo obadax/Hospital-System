@@ -1,5 +1,5 @@
 import express from 'express';
-import { addPatient, getAllPatients, searchPatients, renderAddPatientForm } from '../controllers/patientController.js';
+import { addPatient, getAllPatients, searchPatients, renderAddPatientForm ,editPatient, editPatientForm } from '../controllers/patientController.js';
 
 const router = express.Router();
 
@@ -14,5 +14,11 @@ router.get('/patients', getAllPatients);
 
 // Search Patients Route
 router.get('/searchPatient', searchPatients);
+
+// Route to render the edit patient form
+router.get('/editPatient/:id', editPatientForm);
+
+// Route to handle the edit patient submission
+router.post('/editPatient/:id', editPatient);
 
 export default router;
