@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from 'url';
 import patientRoutes from "./routes/patientRoutes.js";  // Import the patient routes
 import homeRoutes from './routes/homeRoutes.js';
+import doctorRoutes from './routes/doctorRoutes.js';
 
 const app = express();
 const PORT = 3000;
@@ -15,12 +16,13 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 // Use homeRoute for home page
-app.use('/',homeRoutes)
+app.use(homeRoutes)
 
 // Use the patientRoutes for handling patient-related routes
-app.use("/", patientRoutes);
+app.use( patientRoutes);
 
-
+// Use the doctor routes
+app.use(doctorRoutes);
 
 // Start the server
 app.listen(PORT, () => {

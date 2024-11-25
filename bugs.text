@@ -1,22 +1,16 @@
-ADD PATIENT
-> Adding num as name ✔️
-> That made a bug in searching too✔️
-> Adding validation that the user is already in the system.✔️
-> Letters cascading to validation.✔️
-> Adding space to the end will change result.✔️
-> in entering a number in addPatient, there is no format for the number adding u could add all 0's.✔️
+Doctor
+>No button to return home in "doctors page".
+>Deleting a doctor is easy(add an alert before deleting) to prevent mistaken clicks.
+>Adding "Specialization" should be selecting from a list of Specializations.
+>After adding a doctor you won't be directed to doctors page.
+>No validation if doctor is already there(use phone number as a prime key with the name).
+>No searching for specific doctor.
+>No number and contact information (email).
+>Problem in rendering success message after adding a doctor.
+>(Maybe: Search for a better way to deal with time data (adding and using them)).
 
 
-SEARCH
-> search, no validation for entering a number in searching.✔️
-> search cascading checking.-> so wont mess the search a different capital-small letter.✔️
->cant search with num only, will give no value, and case sensitive . ✔️
-
-ADDRESS
-> Address, you can add all numbers to the address. (remain the same)
 
 
-BIG PICTURE.
-> No edit patient Yet.✔️
-> No deleting patient.✔️
-> ID logic change ->using name and phone will fetch the uuid then everything later in system would be using uuid.
+Patient
+>No button to return home in "patients page"
